@@ -17,6 +17,8 @@ vid = vimeo.video(video_id)
 
 == INSTALL:
 
+To install, run 'gem install rbvimeo'
+
 In order to run the specs, first make a test_settings.yml file (a sample is
 provided) using your api key and api secret.
 

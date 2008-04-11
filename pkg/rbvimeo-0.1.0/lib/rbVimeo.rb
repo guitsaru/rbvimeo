@@ -51,6 +51,9 @@ module RBVIMEO
       return nil if vid.id == -1
       return vid
     end
+    
+    # Provides easier access to RBVIMEO::User
+    # user = @vimeo.user
     def user
       return User.new
     end

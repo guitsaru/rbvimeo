@@ -77,7 +77,7 @@ module RBVIMEO
     # returns an Array of comments
     #
     # To load a movie with vimeo id 339189:
-    # @vimeo = RBVIMEO::Vimeo.new api_key, api_secret
+    #
     # comments = video.comments 339189, @vimeo
     def get_comments id, vimeo, xml=nil
       comments = Array.new
