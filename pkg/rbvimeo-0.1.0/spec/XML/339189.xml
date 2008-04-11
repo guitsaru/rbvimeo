@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsp stat="ok" generated_in="0.0191">
+    <video id="339189" privacy="anybody" is_uploading="0" is_transcoding="0" is_hd="1" is_favorite="1">
+        <title>Upload Tutorial</title>
+        <caption>This is a tutorial about our new Uploader. Enjoy!</caption>
+        <upload_date>2007-10-12 16:30:32</upload_date>
+        <number_of_likes>174</number_of_likes>
+        <number_of_plays>515407</number_of_plays>
+        <number_of_comments>34</number_of_comments>
+        <width>506</width>
+        <height>380</height>
+        <owner nsid="152184" id="152184" username="staff" fullname="Vimeo Staff"/>
+        <tags>
+            <tag id="918189" author="152184" raw="vimeo">vimeo</tag>
+            <tag id="918190" author="152184" raw="tutorial">tutorial</tag>
+            <tag id="918191" author="152184" raw="upload">upload</tag>
+            <tag id="918192" author="152184" raw="uploader">uploader</tag>
+        </tags>
+        <urls>
+            <url type="videopage">http://www.vimeo.com/339189/l:app-230</url>
+        </urls>
+        <thumbnails>
+            <thumbnail width="96" height="72">http://40.media.vimeo.com/d1/5/36/63/98/thumbnail-36639824.jpg</thumbnail>
+            <thumbnail width="200" height="150">http://40.media.vimeo.com/d1/5/29/49/99/thumbnail-29499974.jpg</thumbnail>
+            <thumbnail width="460" height="345">http://80.media.vimeo.com/d1/5/29/49/01/thumbnail-29490188.jpg</thumbnail>
+        </thumbnails>
+    </video>
+</rsp>

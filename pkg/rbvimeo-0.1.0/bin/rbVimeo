@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require File.expand_path(
+  File.join(File.dirname(__FILE__), '..', 'lib', 'rbVimeo'))
+require File.expand_path(
+  File.join(File.dirname(__FILE__), '..', 'lib', 'Video'))
+require File.expand_path(
+    File.join(File.dirname(__FILE__), '..', 'lib', 'Comment'))
+require File.expand_path(
+    File.join(File.dirname(__FILE__), '..', 'lib', 'Thumbnail'))
+require File.expand_path(
+    File.join(File.dirname(__FILE__), '..', 'lib', 'User'))    
+# Put your code here
+
+# EOF

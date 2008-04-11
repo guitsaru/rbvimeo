@@ -9,12 +9,12 @@ require 'rbVimeo'
 
 task :default => 'spec:run'
 
-PROJ.name = 'rbVimeo'
+PROJ.name = 'rbvimeo'
 PROJ.authors = 'Matt Pruitt'
 PROJ.email = 'guitsaru@gmail.com'
 PROJ.url = 'www.guitsaru.com'
-PROJ.rubyforge_name = 'rbVimeo'
-PROJ.version = 0.1.0
+PROJ.rubyforge_name = 'rbvimeo'
+PROJ.version = '0.1.0'
 PROJ.spec_opts << '--color'
 
 # EOF

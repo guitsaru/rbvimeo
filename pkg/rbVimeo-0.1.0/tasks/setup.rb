@@ -6,18 +6,20 @@ require 'rake/clean'
 require 'fileutils'
 require 'ostruct'
 
+ENV['VERSION'] = '0.1.0'
+
 PROJ = OpenStruct.new
 
-PROJ.name = nil
-PROJ.summary = nil
+PROJ.name = 'rbvimeo'
+PROJ.summary = 'Ruby Wrapper for the Vimeo API'
 PROJ.description = nil
 PROJ.changes = nil
-PROJ.authors = nil
-PROJ.email = nil
+PROJ.authors = 'guitsaru'
+PROJ.email = 'guitsaru@gmail.com'
 PROJ.url = nil
 PROJ.version = ENV['VERSION'] || '0.1.0'
-PROJ.rubyforge_name = nil
-PROJ.exclude = %w(tmp$ bak$ ~$ CVS .svn/ ^pkg/ ^doc/)
+PROJ.rubyforge_name = 'rbvimeo'
+PROJ.exclude = %w(tmp$ bak$ ~$ CVS .svn/ ^pkg/ ^doc/ .git/)
 PROJ.release_name = ENV['RELEASE']
 PROJ.history_file = 'History.txt'
 PROJ.manifest_file = 'Manifest.txt'

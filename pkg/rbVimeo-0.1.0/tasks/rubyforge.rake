@@ -25,6 +25,7 @@ namespace :gem do
     c['release_notes'] = PROJ.description if PROJ.description
     c['release_changes'] = PROJ.changes if PROJ.changes
     c['preformatted'] = true
+    c['processor_id'] = 8000
 
     files = [(PROJ.need_tar ? "#{pkg}.tgz" : nil),
              (PROJ.need_zip ? "#{pkg}.zip" : nil),
