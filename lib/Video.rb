@@ -1,9 +1,9 @@
-require 'rbVimeo'
 require 'net/http'
 require 'rexml/document'
-require 'User'
-require 'thumbnail'
-require 'Comment'
+require File.join(File.dirname(__FILE__), %w[rbVimeo])
+require File.join(File.dirname(__FILE__), %w[User])
+require File.join(File.dirname(__FILE__), %w[Thumbnail])
+require File.join(File.dirname(__FILE__), %w[Comment])
 
 module RBVIMEO
   class Video
@@ -18,17 +18,21 @@ module RBVIMEO
     # To load a movie with vimeo id 339189:
     # @vimeo = RBVIMEO::Vimeo.new api_key, api_secret
     # video = RBVIMEO::Video.new 339189, @vimeo
-    def initialize id, vimeo
+    def initialize id, vimeo, xml=nil
       @thumbs = Array.new
       @comments = Array.new
       @id = id
       url = vimeo.generate_url({"method" => "vimeo.videos.getInfo", 
         "video_id" => id, "api_key" => vimeo.api_key}, "read")
-      xml_data = Net::HTTP.get_response(URI.parse(url)).body
+      unless xml
+        xml_data = Net::HTTP.get_response(URI.parse(url)).body
+      else
+        xml_data = File.open(xml)
+      end
       xml_doc = REXML::Document.new(xml_data)
       
       return @id = -1 if parse_xml(xml_doc).nil?
-      get_comments id, vimeo
+      get_comments id, vimeo, xml
     
     end
   
@@ -74,11 +78,15 @@ module RBVIMEO
     # To load a movie with vimeo id 339189:
     # @vimeo = RBVIMEO::Vimeo.new api_key, api_secret
     # comments = video.comments 339189, @vimeo
-    def get_comments id, vimeo
+    def get_comments id, vimeo, xml=nil
       comments = Array.new
       url = vimeo.generate_url({"method" => "vimeo.videos.comments.getList",
         "video_id" => id, "api_key" => vimeo.api_key}, "read")
-      xml_data = Net::HTTP.get_response(URI.parse(url)).body
+      unless xml
+        xml_data = Net::HTTP.get_response(URI.parse(url)).body
+      else
+        xml_data = File.open(File.join(File.dirname(xml), File.basename(xml, '.xml')+'.comments.xml'))
+      end
       xml_doc = REXML::Document.new(xml_data)
     
       xml_doc.elements.each('rsp/comments/comment') do |comment|

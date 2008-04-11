@@ -5,7 +5,7 @@
 require 'digest/md5'
 require 'net/http'
 require 'rexml/document'
-require 'Video'
+require File.join(File.dirname(__FILE__), %w[Video])
 
 module RBVIMEO
   class Vimeo
@@ -50,8 +50,8 @@ module RBVIMEO
     
     # Provides easier access to RBVIMEO::Video
     # video = @vimeo.video 339189
-    def video id
-      vid = Video.new(id, self)
+    def video id, xml=nil
+      vid = Video.new(id, self, xml)
       return nil if vid.id == -1
       return vid
     end
