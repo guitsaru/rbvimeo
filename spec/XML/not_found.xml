@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsp stat="fail" generated_in="0.0047">
+    <err code="1" msg="Clip Not found. Either it doesn't exist, or the current user doesn't have permission."/>
+</rsp>
