@@ -1,1 +1,4 @@
 .DS_Store
+spec/test_settings.yml
+test
+test/*

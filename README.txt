@@ -18,7 +18,8 @@ A ruby wrapper for the Vimeo API
 
 == INSTALL:
 
-* FIXME (sudo gem install, anything else)
+In order to run the specs, first make a test_settings.yml file (a sample is
+provided) using your api key and api secret.
 
 == LICENSE:
 
