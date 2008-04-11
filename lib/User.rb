@@ -1,6 +1,6 @@
-require 'rbVimeo'
 require 'net/http'
 require 'rexml/document'
+require File.join(File.dirname(__FILE__), %w[rbVimeo])
 
 module RBVIMEO
   class User
