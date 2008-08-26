@@ -1,5 +1,7 @@
-require 'net/http'
-require 'rexml/document'
+require 'rubygems'
+require 'hpricot'
+require 'open-uri'
+
 require File.join(File.dirname(__FILE__), %w[rbVimeo])
 require File.join(File.dirname(__FILE__), %w[User])
 require File.join(File.dirname(__FILE__), %w[Thumbnail])
@@ -22,49 +24,49 @@ module RBVIMEO
       @thumbs = Array.new
       @comments = Array.new
       @id = id
+      @vimeo = vimeo
+      
       url = vimeo.generate_url({"method" => "vimeo.videos.getInfo", 
         "video_id" => id, "api_key" => vimeo.api_key}, "read")
       unless xml
         #does not get covered by specs because we get an internal xml file
-        xml_data = Net::HTTP.get_response(URI.parse(url)).body
+        xml_doc = Hpricot(open(url))
       else
-        xml_data = File.open(xml)
+        xml_doc = open(xml) {|file| Hpricot(file)}
       end
-      xml_doc = REXML::Document.new(xml_data)
       
       return @id = -1 if parse_xml(xml_doc).nil?
-      get_comments id, vimeo, xml
+      get_comments File.join(File.dirname(xml), File.basename(xml, '.xml')+'.comments.xml')
     
     end
   
     # Parses data using the xml recieved from the Vimeo REST API
     # Should not need to be called by anything other than the initialize method
     def parse_xml xml_doc
-      if xml_doc.elements["rsp/video/title"].nil?
+      if xml_doc.at("title").nil?
         return nil
-      else
-        @title = xml_doc.elements["rsp/video/title"].text
+      else  
         @id = id
-        @caption = xml_doc.elements["rsp/video/caption"].text
-        @upload_date = xml_doc.elements["rsp/video/upload_date"].text
-        @likes = xml_doc.elements["rsp/video/number_of_likes"].text.to_i
-        @plays = xml_doc.elements["rsp/video/number_of_plays"].text.to_i
-        @width = xml_doc.elements["rsp/video/width"].text.to_i
-        @height = xml_doc.elements["rsp/video/height"].text.to_i
-        @num_comments =
-          xml_doc.elements["rsp/video/number_of_comments"].text.to_i
+        @title = xml_doc.at("title").inner_html
+        @caption = xml_doc.at("caption").inner_html
+        @upload_date = xml_doc.at("upload_date").inner_html
+        @likes = xml_doc.at("number_of_likes").inner_html.to_i
+        @plays = xml_doc.at("number_of_plays").inner_html.to_i
+        @width = xml_doc.at("width").inner_html.to_i
+        @height = xml_doc.at("height").inner_html.to_i
+        @num_comments = xml_doc.at("number_of_comments").inner_html.to_i
+        
         @owner = User.new
-        @owner.id = xml_doc.elements["rsp/video/owner"].attributes["id"].to_i
-        @owner.username =
-          xml_doc.elements["rsp/video/owner"].attributes["username"]
-        @owner.fullname =
-          xml_doc.elements["rsp/video/owner"].attributes["fullname"]
-        @url = xml_doc.elements["rsp/video/urls/url"].text
-      
-        xml_doc.elements.each('rsp/video/thumbnails/thumbnail') do |thumb|
-          url = thumb.text
-          w = thumb.attributes["width"].to_i
-          h = thumb.attributes["height"].to_i
+        @owner.id = xml_doc.at("owner").attributes["id"].to_i
+        @owner.username = xml_doc.at("owner").attributes["username"]
+        @owner.fullname = xml_doc.at("owner").attributes["fullname"]
+          
+        @url = xml_doc.at("url").inner_html
+
+        (xml_doc/:thumbnail).each do |thumbnail|
+          url = thumbnail.inner_html
+          w = thumbnail.attributes['width'].to_i
+          h = thumbnail.attributes['height'].to_i
           thumbnail = Thumbnail.new(url, w, h)
           @thumbs << thumbnail
         end
@@ -79,30 +81,31 @@ module RBVIMEO
     # To load a movie with vimeo id 339189:
     #
     # comments = video.comments 339189, @vimeo
-    def get_comments id, vimeo, xml=nil
-      comments = Array.new
-      url = vimeo.generate_url({"method" => "vimeo.videos.comments.getList",
-        "video_id" => id, "api_key" => vimeo.api_key}, "read")
+    def get_comments xml=nil
+      comments = []
+      url = @vimeo.generate_url({"method" => "vimeo.videos.comments.getList",
+        "video_id" => @id, "api_key" => @vimeo.api_key}, "read")
+        
       unless xml
         #does not get covered by specs because we get an internal xml file
-        xml_data = Net::HTTP.get_response(URI.parse(url)).body
+        xml_doc = Hpricot.XML(open(url))
       else
-        xml_data = File.open(File.join(File.dirname(xml), File.basename(xml, '.xml')+'.comments.xml'))
+        xml_doc = open(xml) {|file| Hpricot.XML(file)}
       end
-      xml_doc = REXML::Document.new(xml_data)
-    
-      xml_doc.elements.each('rsp/comments/comment') do |comment|
-        id = comment.attributes["id"].to_i
-        author = comment.attributes["author"]
-        authorname = comment.attributes["authorname"]
-        date = comment.attributes["datecreate"]
-        url = comment.attributes["permalink"]
-        text = comment.text
-        @portraits = Array.new
-        xml_doc.elements.each('rsp/comments/comment/portraits/portrait') do |thumb|
-          portrait_url = thumb.text
-          w = thumb.attributes["width"].to_i
-          h = thumb.attributes["height"].to_i
+      
+      (xml_doc/:comment).each do |comment|
+        text = comment.children.select{|e| e.text?}.join
+        id = comment.attributes['id'].to_i
+        author = comment.attributes['author']
+        authorname = comment.attributes['authorname']
+        date = comment.attributes['datecreate']
+        url = comment.attributes['permalink']
+        
+        @portraits = []
+        (comment/'portraits'/'portrait').each do |thumb|
+          portrait_url = thumb.inner_html          
+          w = thumb.attributes['width'].to_i
+          h = thumb.attributes['height'].to_i
           thumbnail = Thumbnail.new(portrait_url, w, h)
           @portraits << thumbnail
         end

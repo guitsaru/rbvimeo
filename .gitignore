@@ -1,4 +1,6 @@
 .DS_Store
+*.rbc
+doc/**
 spec/test_settings.yml
 test
 test/*
