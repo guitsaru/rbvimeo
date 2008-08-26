@@ -11,7 +11,7 @@ module RBVIMEO
   class Video
     attr_reader :id, :title, :caption, :upload_date, :likes, :plays
     attr_reader :num_comments, :width, :height, :owner, :tags, :url
-    attr_reader :thumbs, :comments
+    attr_reader :thumbs
     
     # Fetches data about a video from the Vimeo site
     # id is the id of the the Vimeo video
@@ -21,8 +21,8 @@ module RBVIMEO
     # @vimeo = RBVIMEO::Vimeo.new api_key, api_secret
     # video = RBVIMEO::Video.new 339189, @vimeo
     def initialize id, vimeo, xml=nil
-      @thumbs = Array.new
-      @comments = Array.new
+      @thumbs = []
+      @comments = []
       @id = id
       @vimeo = vimeo
       
@@ -36,8 +36,6 @@ module RBVIMEO
       end
       
       return @id = -1 if parse_xml(xml_doc).nil?
-      get_comments File.join(File.dirname(xml), File.basename(xml, '.xml')+'.comments.xml')
-    
     end
   
     # Parses data using the xml recieved from the Vimeo REST API
@@ -86,11 +84,11 @@ module RBVIMEO
       url = @vimeo.generate_url({"method" => "vimeo.videos.comments.getList",
         "video_id" => @id, "api_key" => @vimeo.api_key}, "read")
         
-      unless xml
+      unless @xml
         #does not get covered by specs because we get an internal xml file
         xml_doc = Hpricot.XML(open(url))
       else
-        xml_doc = open(xml) {|file| Hpricot.XML(file)}
+        xml_doc = open(@xml) {|file| Hpricot.XML(file)}
       end
       
       (xml_doc/:comment).each do |comment|
@@ -112,6 +110,7 @@ module RBVIMEO
         com = Comment.new(id, author, authorname, date, url, text, @portraits)
         @comments << com
       end
+      return self
     end
 
     # Returns the code to embed the video
@@ -133,6 +132,11 @@ module RBVIMEO
       string += 'show_title=0&amp;show_byline=0&amp;showportrait=0&amp;color=00ADEF" /></object>'
   
       return string
+    end
+  
+    def comments xml=nil
+      get_comments(xml) if @comments.empty?
+      return @comments
     end
   end
 end

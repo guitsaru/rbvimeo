@@ -1,6 +1,8 @@
 .DS_Store
 *.rbc
 doc/**
+coverage/**
+pkg/**
 spec/test_settings.yml
 test
 test/*

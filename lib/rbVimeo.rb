@@ -14,6 +14,7 @@ module RBVIMEO
     @@API_REST_URL  = "http://www.vimeo.com/api/rest"
     @@API_AUTH_URL   = "http://www.vimeo.com/services/auth/"
     @@API_UPLOAD_URL = "http://www.vimeo.com/services/upload/"
+    
     # api_key and api_secret should both be generated on www.vimeo.com
     def initialize api_key, api_secret
       @api_key = api_key
