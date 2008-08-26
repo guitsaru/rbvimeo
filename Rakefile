@@ -16,5 +16,6 @@ PROJ.url = 'www.guitsaru.com'
 PROJ.rubyforge_name = 'rbvimeo'
 PROJ.version = '0.2.0'
 PROJ.spec_opts << '--color'
+PROJ.dependencies << 'hpricot'
 
 # EOF
