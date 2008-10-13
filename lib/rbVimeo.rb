@@ -5,7 +5,12 @@
 require 'digest/md5'
 require 'net/http'
 require 'rexml/document'
-require File.join(File.dirname(__FILE__), %w[Video])
+
+require 'Video'
+require 'Thumbnail'
+require 'User'
+require 'Comment'
+
 
 module RBVIMEO
   class Vimeo

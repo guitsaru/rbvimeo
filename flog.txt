@@ -1,4 +1,4 @@
-Total score = 273.665616252757
+Total score = 254.565616252757
 
 Video#parse_xml: (86.4)
     29.4: assignment
@@ -33,7 +33,3 @@ Video#get_comments: (69.1)
      1.5: join
      1.5: api_key
      1.3: generate_url
-main#none: (30.0)
-    13.2: require
-     9.0: dirname
-     7.8: join

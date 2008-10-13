@@ -2,11 +2,6 @@ require 'rubygems'
 require 'hpricot'
 require 'open-uri'
 
-require File.join(File.dirname(__FILE__), %w[rbVimeo])
-require File.join(File.dirname(__FILE__), %w[User])
-require File.join(File.dirname(__FILE__), %w[Thumbnail])
-require File.join(File.dirname(__FILE__), %w[Comment])
-
 module RBVIMEO
   class Video
     attr_reader :id, :title, :caption, :upload_date, :likes, :plays
