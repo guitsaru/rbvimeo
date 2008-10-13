@@ -1,0 +1,64 @@
+rbVimeo
+Matt Pruitt
+www.guitsaru.com
+
+h2. DESCRIPTION:
+
+A ruby wrapper for the Vimeo API
+
+h2. FEATURES/PROBLEMS:
+
+This does not handle authentication.  It only gets public videos from Vimeo.
+
+h2. SYNOPSIS:
+
+<code lang="ruby">
+vimeo = RBVIMEO::Vimeo.new(api_key, api_signature)
+video = vimeo.video(video_id)
+
+# See the docs for all Video properties
+video.title
+video.caption
+video.comments # Returns an array of comment objects
+video.likes
+video.plays
+</code>
+
+h2. DOCUMENTATION
+
+"Documentation":http://rbvimeo.rubyforge.org
+
+h2. INSTALLATION:
+
+<pre>sudo gem install rbvimeo</pre>
+
+h2. CONTRIBUTING
+
+Fork the project on "github.":http://github.com/guitsaru/rbvimeo
+
+In order to run the specs, edit the test_settings.yml file (a sample is provided) using your api key and api secret.
+
+h2. LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2008 Matt Pruitt
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
