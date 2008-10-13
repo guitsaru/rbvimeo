@@ -26,7 +26,7 @@ provided) using your api key and api secret.
 
 (The MIT License)
 
-Copyright (c) 2008
+Copyright (c) 2008 Matt Pruitt
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

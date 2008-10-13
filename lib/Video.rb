@@ -84,11 +84,11 @@ module RBVIMEO
       url = @vimeo.generate_url({"method" => "vimeo.videos.comments.getList",
         "video_id" => @id, "api_key" => @vimeo.api_key}, "read")
         
-      unless @xml
-        #does not get covered by specs because we get an internal xml file
+      unless xml
+        # Does not get covered by specs because we get an internal xml file
         xml_doc = Hpricot.XML(open(url))
       else
-        xml_doc = open(@xml) {|file| Hpricot.XML(file)}
+        xml_doc = open(xml) {|file| Hpricot.XML(file)}
       end
       
       (xml_doc/:comment).each do |comment|
@@ -115,23 +115,14 @@ module RBVIMEO
 
     # Returns the code to embed the video
     def embed width, height
-      w = width.to_s
-      h = height.to_s
-      id = @id.to_s
-      string = ''
-      string += '<object type="application/x-shockwave-flash" width='
-      string += w + '" height="' + h + '"'
-      string += 'data="http://www.vimeo.com/moogaloop.swf?clip_id=' + id
-      string += '&amp;server=www.vimeo.com&amp;fullscreen=0&amp;show_title=0'
-      string += '&amp;show_byline=0&amp;showportrait=0&amp;color=00ADEF">'
-      string += '<param name="quality" value="best" />'
-      string += '<param name="allowfullscreen" value="false" />'
-      string += '<param name="scale" value="showAll" />'
-      string += '<param name="movie" value="http://www.vimeo.com/moogaloop.swf?clip_id='
-      string += id + '&amp;server=www.vimeo.com&amp;fullscreen=0&amp;'
-      string += 'show_title=0&amp;show_byline=0&amp;showportrait=0&amp;color=00ADEF" /></object>'
-  
-      return string
+      string = <<EOF
+<object type="application/x-shockwave-flash" width=#{width} height=#{height} data="http://www.vimeo.com/moogaloop.swf?clip_id=#{@id}&server=www.vimeo.com&fullscreen=0&show_title=0'&show_byline=0&showportrait=0&color=00ADEF">
+<param name="quality" value="best" />
+<param name="allowfullscreen" value="false" />
+<param name="scale" value="showAll" />
+<param name="movie" value="http://www.vimeo.com/moogaloop.swf?clip_id=#{@id}&server=www.vimeo.com&fullscreen=0&show_title=0&show_byline=0&showportrait=0&color=00ADEF" /></object>
+EOF
+    string.gsub("\n", "")
     end
   
     def comments xml=nil
