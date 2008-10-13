@@ -25,12 +25,12 @@ module RBVIMEO
     #   "video_id" => "339189", "api_key" => @vimeo.api_key})
     # This example returns a url to the xml for the Vimeo video with id 339189
     def generate_url parameters, permissions = nil
-      url = @@API_REST_URL + "?api_key=" + @api_key
+      url = "#{@@API_REST_URL}?api_key=#{@api_key}"
       params = parameters.sort
       params.each do |param|
-        url += "&" + param[0].to_s + "=" + param[1].to_s unless param[0].to_s == "api_key"
+        url += "&#{param[0]}=#{param[1]}" unless param[0].to_s == "api_key"
       end
-      url += "&api_sig=" + generate_signature(parameters)
+      url += "&api_sig=#{generate_signature(parameters)}"
       return url
     end
     
