@@ -18,7 +18,7 @@ h2. Usage
 
 <br />
 
-@# See the docs for all Video properties@
+See the docs for all Video properties
 
 @video.title@
 
