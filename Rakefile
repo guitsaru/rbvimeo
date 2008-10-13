@@ -14,8 +14,8 @@ PROJ.authors = 'Matt Pruitt'
 PROJ.email = 'guitsaru@gmail.com'
 PROJ.url = 'www.guitsaru.com'
 PROJ.rubyforge_name = 'rbvimeo'
-PROJ.version = '0.2.0'
-PROJ.spec_opts << '--color'
-PROJ.dependencies << 'hpricot'
+PROJ.version = '0.2.1'
+PROJ.spec.opts << '--color'
+PROJ.gem.dependencies << 'hpricot'
 
 # EOF

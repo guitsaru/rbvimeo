@@ -1,6 +1,6 @@
 rbVimeo
-    by Matt Pruitt
-    www.guitsaru.com
+by Matt Pruitt
+www.guitsaru.com
 
 == DESCRIPTION:
 
