@@ -36,11 +36,11 @@ describe Video, "initialization" do
     end
   
     it "should have likes" do
-      @vid.likes.should eql(174)
+      @vid.number_of_likes.should eql(174)
     end
   
     it "should have plays" do
-      @vid.plays.should eql(515407)
+      @vid.number_of_plays.should eql(515407)
     end
   
     it "should have dimensions" do
@@ -54,7 +54,7 @@ describe Video, "initialization" do
       comment_hpricot = open(test_video_xml_file) {|file| Hpricot(file)}
       @vimeo.stub!(:get_xml).and_return(comment_hpricot)
       
-      @vid.num_comments.should eql(34)
+      @vid.number_of_comments.should eql(34)
       @vid.comments[0].id.should eql(265313)
       @vid.comments[0].author.should eql("ctd3")
       @vid.comments[0].authorname.should eql("CTD3")

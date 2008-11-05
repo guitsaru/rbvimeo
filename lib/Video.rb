@@ -4,8 +4,8 @@ require 'open-uri'
 
 module RBVIMEO
   class Video
-    attr_reader :id, :title, :caption, :upload_date, :likes, :plays
-    attr_reader :num_comments, :width, :height, :owner, :tags, :url
+    attr_reader :id, :title, :caption, :upload_date, :number_of_likes, :number_of_plays
+    attr_reader :number_of_comments, :width, :height, :owner, :tags, :url
     attr_reader :thumbs
     
     # Fetches data about a video from the Vimeo site
@@ -32,33 +32,21 @@ module RBVIMEO
     # Parses data using the xml recieved from the Vimeo REST API
     # Should not need to be called by anything other than the initialize method
     def parse_xml xml_doc
-      if xml_doc.at("title").nil?
-        return nil
-      else  
-        @id = id
-        @title = xml_doc.at("title").inner_html
-        @caption = xml_doc.at("caption").inner_html
-        @upload_date = xml_doc.at("upload_date").inner_html
-        @likes = xml_doc.at("number_of_likes").inner_html.to_i
-        @plays = xml_doc.at("number_of_plays").inner_html.to_i
-        @width = xml_doc.at("width").inner_html.to_i
-        @height = xml_doc.at("height").inner_html.to_i
-        @num_comments = xml_doc.at("number_of_comments").inner_html.to_i
-        
-        @owner = User.new
-        @owner.id = xml_doc.at("owner").attributes["id"].to_i
-        @owner.username = xml_doc.at("owner").attributes["username"]
-        @owner.fullname = xml_doc.at("owner").attributes["fullname"]
-          
-        @url = xml_doc.at("url").inner_html
+      return nil if xml_doc.at("title").nil?
+      @id = id
+      
+      %w[title caption upload_date number_of_likes number_of_plays width height number_of_comments url].each do |attribute|
+        instance_variable_set("@#{attribute}", xml_doc.at(attribute).inner_html)
+      end
+      
+      @owner = User.new
+      %w[id username fullname].each do |attribute|
+        @owner.instance_variable_set("@#{attribute}", xml_doc.at("owner").attributes[attribute])
+      end
 
-        (xml_doc/:thumbnail).each do |thumbnail|
-          url = thumbnail.inner_html
-          w = thumbnail.attributes['width'].to_i
-          h = thumbnail.attributes['height'].to_i
-          thumbnail = Thumbnail.new(url, w, h)
-          @thumbs << thumbnail
-        end
+      (xml_doc/:thumbnail).each do |thumbnail|
+        thumbnail = Thumbnail.new(thumbnail.inner_html, thumbnail.attributes['width'].to_i, thumbnail.attributes['height'].to_i)
+        @thumbs << thumbnail
       end
     end
   
@@ -110,10 +98,30 @@ module RBVIMEO
 EOF
     string.gsub("\n", "")
     end
-  
+
     def comments
       get_comments if @comments.empty?
       return @comments
+    end
+    
+    def number_of_likes
+      @number_of_likes.to_i
+    end
+    
+    def number_of_plays
+      @number_of_plays.to_i
+    end
+    
+    def number_of_comments
+      @number_of_comments.to_i
+    end
+    
+    def height
+      @height.to_i
+    end
+    
+    def width
+      @width.to_i
     end
   end
 end
