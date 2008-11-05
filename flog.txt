@@ -1,4 +1,4 @@
-Total score = 252.91726759422
+Total score = 245.376478610294
 
 Video#parse_xml: (86.4)
     29.4: assignment
@@ -14,17 +14,15 @@ Video#parse_xml: (86.4)
      1.5: each
      1.5: id
      1.3: nil?
-Video#get_comments: (69.1)
-    31.8: assignment
+Video#get_comments: (63.4)
+    28.8: assignment
     12.9: attributes
     11.5: []
-     7.2: branch
      5.1: /
      4.9: to_i
+     4.5: branch
      3.2: <<
      3.2: new
-     3.0: open
-     2.9: XML
      2.8: each
      1.9: children
      1.8: text?
@@ -33,3 +31,4 @@ Video#get_comments: (69.1)
      1.5: join
      1.5: api_key
      1.3: generate_url
+     1.3: get_xml

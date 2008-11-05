@@ -58,8 +58,8 @@ module RBVIMEO
 
     # Provides easier access to RBVIMEO::Video
     # video = @vimeo.video 339189
-    def video id, xml=nil
-      vid = Video.new(id, self, xml)
+    def video id
+      vid = Video.new(id, self)
       return nil if vid.id == -1
       return vid
     end

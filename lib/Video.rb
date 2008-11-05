@@ -15,7 +15,7 @@ module RBVIMEO
     # To load a movie with vimeo id 339189:
     # @vimeo = RBVIMEO::Vimeo.new api_key, api_secret
     # video = RBVIMEO::Video.new 339189, @vimeo
-    def initialize id, vimeo, xml=nil
+    def initialize id, vimeo
       @thumbs = []
       @comments = []
       @id = id
@@ -75,12 +75,7 @@ module RBVIMEO
       url = @vimeo.generate_url({"method" => "vimeo.videos.comments.getList",
         "video_id" => @id, "api_key" => @vimeo.api_key}, "read")
         
-      unless xml
-        # Does not get covered by specs because we get an internal xml file
-        xml_doc = Hpricot.XML(open(url))
-      else
-        xml_doc = open(xml) {|file| Hpricot.XML(file)}
-      end
+      xml_doc = @vimeo.get_xml(url)
       
       (xml_doc/:comment).each do |comment|
         text = comment.children.select{|e| e.text?}.join
@@ -116,8 +111,8 @@ EOF
     string.gsub("\n", "")
     end
   
-    def comments xml=nil
-      get_comments(xml) if @comments.empty?
+    def comments
+      get_comments if @comments.empty?
       return @comments
     end
   end

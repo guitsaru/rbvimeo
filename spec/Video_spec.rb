@@ -1,6 +1,4 @@
 require File.join(File.dirname(__FILE__), %w[spec_helper])
-require File.join(File.dirname(__FILE__), "../lib/rbVimeo.rb")
-require File.join(File.dirname(__FILE__), "../lib/Video.rb")
 require 'yaml'
 
 include RBVIMEO
@@ -51,12 +49,17 @@ describe Video, "initialization" do
     end
 
     it "should have comments" do
+      test_video_xml_file = File.join(File.dirname(__FILE__), %w[XML/339189.comments.xml])
+      
+      comment_hpricot = open(test_video_xml_file) {|file| Hpricot(file)}
+      @vimeo.stub!(:get_xml).and_return(comment_hpricot)
+      
       @vid.num_comments.should eql(34)
       @vid.comments[0].id.should eql(265313)
       @vid.comments[0].author.should eql("ctd3")
       @vid.comments[0].authorname.should eql("CTD3")
       @vid.comments[0].date.should eql("2007-10-12 17:47:13")
-      @vid.comments[0].url.should eql("http://vimeo.com/339189#comment_265313")
+      @vid.comments[0].url.should eql("http://www.vimeo.com/339189#comment_265313")
       @vid.comments[0].text.should eql("Sure is! Great changes!")
       @vid.comments[0].portraits[0].url.should eql("http://80.media.vimeo.com/d1/5/35/44/42/portrait-35444268.jpg")
       @vid.comments[0].portraits[0].width.should eql(24)

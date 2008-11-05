@@ -1,5 +1,4 @@
 require File.join(File.dirname(__FILE__), %w[spec_helper])
-require File.join(File.dirname(__FILE__), "../lib/rbVimeo.rb")
 require "yaml"
 
 include RBVIMEO
@@ -29,7 +28,11 @@ describe Vimeo do
 
   it "should generate a video" do
     test_video_xml_file = File.join(File.dirname(__FILE__), %w[XML/339189.xml])
-    @vid = @vimeo.video(339189, test_video_xml_file)
+    
+    video_hpricot = open(test_video_xml_file) {|file| Hpricot(file)}
+    @vimeo.stub!(:get_xml).and_return(video_hpricot)
+    
+    @vid = @vimeo.video(339189)
   end
 
   it "should generate a user" do
