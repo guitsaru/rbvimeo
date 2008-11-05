@@ -58,30 +58,22 @@ module RBVIMEO
     # To load a movie with vimeo id 339189:
     #
     # comments = video.comments 339189, @vimeo
-    def get_comments xml=nil
-      comments = []
-      url = @vimeo.generate_url({"method" => "vimeo.videos.comments.getList",
-        "video_id" => @id, "api_key" => @vimeo.api_key}, "read")
-        
-      xml_doc = @vimeo.get_xml(url)
+    def get_comments
+      xml_doc = @vimeo.get_xml(@vimeo.generate_url({"method" => "vimeo.videos.comments.getList",
+        "video_id" => @id, "api_key" => @vimeo.api_key}, "read"))
       
-      (xml_doc/:comment).each do |comment|
-        text = comment.children.select{|e| e.text?}.join
-        id = comment.attributes['id'].to_i
-        author = comment.attributes['author']
-        authorname = comment.attributes['authorname']
-        date = comment.attributes['datecreate']
-        url = comment.attributes['permalink']
+      (xml_doc/:comment).each do |comment|  
+        com = Comment.new
         
-        @portraits = []
-        (comment/'portraits'/'portrait').each do |thumb|
-          portrait_url = thumb.inner_html          
-          w = thumb.attributes['width'].to_i
-          h = thumb.attributes['height'].to_i
-          thumbnail = Thumbnail.new(portrait_url, w, h)
-          @portraits << thumbnail
+        com.text = comment.children.select{|e| e.text?}.join        
+        %w[id author authorname datecreate permalink].each do |attribute|
+          com.instance_variable_set("@#{attribute}", comment.attributes[attribute])
         end
-        com = Comment.new(id, author, authorname, date, url, text, @portraits)
+        
+        (comment/'portraits'/'portrait').each do |thumbnail|
+          portrait = Thumbnail.new(thumbnail.inner_html, thumbnail.attributes['width'].to_i, thumbnail.attributes['height'].to_i)
+          com.portraits << portrait
+        end
         @comments << com
       end
       return self

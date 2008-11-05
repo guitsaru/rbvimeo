@@ -60,7 +60,7 @@ describe Video, "initialization" do
       @vid.comments[0].authorname.should eql("CTD3")
       @vid.comments[0].date.should eql("2007-10-12 17:47:13")
       @vid.comments[0].url.should eql("http://www.vimeo.com/339189#comment_265313")
-      @vid.comments[0].text.should eql("Sure is! Great changes!")
+      @vid.comments[0].text.should match(/Sure is! Great changes!/)
       @vid.comments[0].portraits[0].url.should eql("http://80.media.vimeo.com/d1/5/35/44/42/portrait-35444268.jpg")
       @vid.comments[0].portraits[0].width.should eql(24)
       @vid.comments[0].portraits[0].height.should eql(24)
