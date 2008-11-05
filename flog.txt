@@ -1,4 +1,4 @@
-Total score = 187.606606450274
+Total score = 191.506606450274
 
 Video#get_comments: (50.9)
     12.4: assignment

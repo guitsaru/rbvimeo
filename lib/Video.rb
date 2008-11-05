@@ -7,6 +7,7 @@ module RBVIMEO
     attr_reader :id, :title, :caption, :upload_date, :number_of_likes, :number_of_plays
     attr_reader :number_of_comments, :width, :height, :owner, :tags, :url
     attr_reader :thumbs
+
     
     # Fetches data about a video from the Vimeo site
     # id is the id of the the Vimeo video
@@ -94,6 +95,18 @@ EOF
     def comments
       get_comments if @comments.empty?
       return @comments
+    end
+    
+    def likes
+      @number_of_likes.to_i
+    end
+    
+    def plays
+      @number_of_plays.to_i
+    end
+    
+    def num_comments
+      @number_of_comments.to_i
     end
     
     def number_of_likes
