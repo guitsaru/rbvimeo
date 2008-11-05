@@ -1,4 +1,4 @@
-Total score = 254.565616252757
+Total score = 252.91726759422
 
 Video#parse_xml: (86.4)
     29.4: assignment

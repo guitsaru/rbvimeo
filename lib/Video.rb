@@ -23,16 +23,12 @@ module RBVIMEO
       
       url = vimeo.generate_url({"method" => "vimeo.videos.getInfo", 
         "video_id" => id, "api_key" => vimeo.api_key}, "read")
-      unless xml
-        #does not get covered by specs because we get an internal xml file
-        xml_doc = Hpricot(open(url))
-      else
-        xml_doc = open(xml) {|file| Hpricot(file)}
-      end
-      
+
+      xml_doc = @vimeo.get_xml(url)
+
       return @id = -1 if parse_xml(xml_doc).nil?
     end
-  
+
     # Parses data using the xml recieved from the Vimeo REST API
     # Should not need to be called by anything other than the initialize method
     def parse_xml xml_doc

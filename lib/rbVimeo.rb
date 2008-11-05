@@ -2,9 +2,10 @@
 # Ruby Library for working with Vimeo
 # Based on the sample PHP Vimeo API
 
+require 'rubygems'
 require 'digest/md5'
-require 'net/http'
-require 'rexml/document'
+require 'open-uri'
+require 'hpricot'
 
 require 'Video'
 require 'Thumbnail'
@@ -15,11 +16,11 @@ require 'Comment'
 module RBVIMEO
   class Vimeo
     attr_accessor :api_key, :api_secret
-  
+
     @@API_REST_URL  = "http://www.vimeo.com/api/rest"
     @@API_AUTH_URL   = "http://www.vimeo.com/services/auth/"
     @@API_UPLOAD_URL = "http://www.vimeo.com/services/upload/"
-    
+
     # api_key and api_secret should both be generated on www.vimeo.com
     def initialize api_key, api_secret
       @api_key = api_key
@@ -38,7 +39,12 @@ module RBVIMEO
       url += "&api_sig=#{generate_signature(parameters)}"
       return url
     end
-    
+
+    # Returns the xml from the given url
+    def get_xml url
+      return Hpricot(open(url))
+    end
+
     # parameters is a hash 
     def generate_signature parameters
       temp = ''
@@ -49,7 +55,7 @@ module RBVIMEO
       signature = @api_secret + temp
       Digest::MD5.hexdigest(signature)
     end
-    
+
     # Provides easier access to RBVIMEO::Video
     # video = @vimeo.video 339189
     def video id, xml=nil
@@ -57,7 +63,7 @@ module RBVIMEO
       return nil if vid.id == -1
       return vid
     end
-    
+
     # Provides easier access to RBVIMEO::User
     # user = @vimeo.user
     def user
