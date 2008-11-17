@@ -1,6 +1,3 @@
-(in /Users/Matt/Documents/Code/Ruby/rbVimeo)
-# -*- encoding: utf-8 -*-
-
 Gem::Specification.new do |s|
   s.name = %q{rbvimeo}
   s.version = "0.2.0"
