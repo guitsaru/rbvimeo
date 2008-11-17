@@ -14,6 +14,7 @@ PROJ.authors = 'Matt Pruitt'
 PROJ.email = 'guitsaru@gmail.com'
 PROJ.url = 'www.guitsaru.com'
 PROJ.rubyforge.name = 'rbvimeo'
+PROJ.summary = "A ruby wrapper for the vimeo api"
 PROJ.version = '0.2.0'
 PROJ.spec.opts << '--color'
 PROJ.gem.dependencies << 'hpricot'
