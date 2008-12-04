@@ -30,56 +30,6 @@ module RBVIMEO
       return @id = -1 if parse_xml(xml_doc).nil?
     end
 
-    # Parses data using the xml recieved from the Vimeo REST API
-    # Should not need to be called by anything other than the initialize method
-    def parse_xml xml_doc
-      return nil if xml_doc.at("title").nil?
-      @id = id
-      
-      %w[title caption upload_date number_of_likes number_of_plays width height number_of_comments url].each do |attribute|
-        instance_variable_set("@#{attribute}", xml_doc.at(attribute).inner_html)
-      end
-      
-      @owner = User.new
-      %w[id username fullname].each do |attribute|
-        @owner.instance_variable_set("@#{attribute}", xml_doc.at("owner").attributes[attribute])
-      end
-
-      (xml_doc/:thumbnail).each do |thumbnail|
-        thumbnail = Thumbnail.new(thumbnail.inner_html, thumbnail.attributes['width'].to_i, thumbnail.attributes['height'].to_i)
-        @thumbs << thumbnail
-      end
-    end
-  
-    # Fetches the comments for the specified Video
-    # id is the id of the Vimeo video
-    # vimeo is an instance of RBVIMEO::Vimeo
-    # returns an Array of comments
-    #
-    # To load a movie with vimeo id 339189:
-    #
-    # comments = video.comments 339189, @vimeo
-    def get_comments
-      xml_doc = @vimeo.get_xml(@vimeo.generate_url({"method" => "vimeo.videos.comments.getList",
-        "video_id" => @id, "api_key" => @vimeo.api_key}, "read"))
-      
-      (xml_doc/:comment).each do |comment|  
-        com = Comment.new
-        
-        com.text = comment.children.select{|e| e.text?}.join        
-        %w[id author authorname datecreate permalink].each do |attribute|
-          com.instance_variable_set("@#{attribute}", comment.attributes[attribute])
-        end
-        
-        (comment/'portraits'/'portrait').each do |thumbnail|
-          portrait = Thumbnail.new(thumbnail.inner_html, thumbnail.attributes['width'].to_i, thumbnail.attributes['height'].to_i)
-          com.portraits << portrait
-        end
-        @comments << com
-      end
-      return self
-    end
-
     # Returns the code to embed the video
     def embed width, height
       string = <<EOF
@@ -128,5 +78,65 @@ EOF
     def width
       @width.to_i
     end
+  
+  private
+    # Parses data using the xml recieved from the Vimeo REST API
+    # Should not need to be called by anything other than the initialize method
+    def parse_xml xml_doc
+      return nil if xml_doc.at("title").nil?
+      @id = id
+      
+      %w[title caption upload_date number_of_likes number_of_plays width height number_of_comments url].each do |attribute|
+        instance_variable_set("@#{attribute}", xml_doc.at(attribute).inner_html)
+      end
+      
+      @owner = User.new
+      %w[id username fullname].each do |attribute|
+        @owner.instance_variable_set("@#{attribute}", xml_doc.at("owner").attributes[attribute])
+      end
+
+      (xml_doc/:thumbnail).each do |thumbnail|
+        @thumbs << build_thumbnail(thumbnail)
+      end
+    end
+  
+    # Fetches the comments for the specified Video
+    # id is the id of the Vimeo video
+    # vimeo is an instance of RBVIMEO::Vimeo
+    # returns an Array of comments
+    #
+    # To load a movie with vimeo id 339189:
+    #
+    # comments = video.comments 339189, @vimeo
+    def get_comments
+      xml_doc = @vimeo.get_xml(@vimeo.generate_url({"method" => "vimeo.videos.comments.getList",
+        "video_id" => @id, "api_key" => @vimeo.api_key}, "read"))
+      
+      (xml_doc/:comment).each do |comment|  
+        @comments << build_comment(comment)
+      end
+      return self
+    end
+    
+    def build_comment(c)
+      comment = Comment.new
+
+      comment.text = c.children.select{|e| e.text?}.join
+      
+      %w[id author authorname datecreate permalink].each do |attribute|
+        comment.instance_variable_set("@#{attribute}", c.attributes[attribute])
+      end
+
+      (c/'portraits'/'portrait').each do |portrait|
+        comment.portraits << build_thumbnail(portrait)
+      end
+      
+      return comment
+    end
+    
+    def build_thumbnail(t)
+      thumbnail = Thumbnail.new(t.inner_html, t.attributes['width'].to_i, t.attributes['height'].to_i)
+    end
+    
   end
 end

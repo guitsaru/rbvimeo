@@ -1,40 +1,36 @@
-Total score = 191.506606450274
+Total Flog = 175.5 (5.7 +/- 51.4 flog / method)
 
-Video#get_comments: (50.9)
-    12.4: assignment
-     6.6: attributes
-     6.0: []
-     6.0: branch
-     5.1: /
-     4.3: each
-     3.8: to_i
-     3.2: <<
-     3.2: new
-     1.9: portraits
-     1.9: inner_html
-     1.9: children
-     1.8: text?
-     1.7: select
-     1.7: api_key
-     1.6: instance_variable_set
-     1.5: join
-     1.5: generate_url
-     1.3: get_xml
-Video#parse_xml: (39.7)
-     8.3: assignment
-     6.0: attributes
-     5.4: []
+Video#parse_xml: (26.8)
+     6.8: assignment
      5.3: at
      5.2: branch
      3.9: each
-     3.4: to_i
-     3.3: inner_html
      2.8: instance_variable_set
-     2.8: new
-     1.5: <<
+     1.8: attributes
+     1.6: inner_html
+     1.6: []
+     1.6: build_thumbnail
      1.5: /
+     1.4: <<
+     1.3: new
      1.3: id
      1.3: nil?
+Video#build_comment: (24.0)
+     7.0: assignment
+     4.1: branch
+     3.2: /
+     2.6: each
+     1.8: attributes
+     1.7: children
+     1.6: portraits
+     1.6: build_thumbnail
+     1.6: []
+     1.6: text?
+     1.5: select
+     1.4: <<
+     1.4: instance_variable_set
+     1.3: new
+     1.3: join
 Vimeo#generate_url: (17.8)
      8.1: assignment
      5.2: []
@@ -51,8 +47,17 @@ Vimeo#generate_signature: (17.7)
      4.3: +
      4.0: []
      3.6: to_s
+     1.3: branch
      1.3: sort
      1.3: hexdigest
-     1.3: branch
      1.3: each
      0.6: lit_fixnum
+Video#build_thumbnail: (13.1)
+     3.8: attributes
+     3.4: []
+     3.0: to_i
+     1.5: inner_html
+     1.3: new
+     1.3: assignment
+main#none: (12.1)
+    12.1: require
