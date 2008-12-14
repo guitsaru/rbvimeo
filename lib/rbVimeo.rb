@@ -1,18 +1,3 @@
-# Matt Pruitt
-# Ruby Library for working with Vimeo
-# Based on the sample PHP Vimeo API
-
-require 'rubygems'
-require 'digest/md5'
-require 'open-uri'
-require 'hpricot'
-
-require 'Video'
-require 'Thumbnail'
-require 'User'
-require 'Comment'
-
-
 module RBVIMEO
   class Vimeo
     attr_accessor :api_key, :api_secret

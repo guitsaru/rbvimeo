@@ -7,7 +7,7 @@ load 'tasks/setup.rb'
 ensure_in_path 'lib'
 require 'rbVimeo'
 
-task :default => 'spec:run'
+task :default => 'test:run'
 
 PROJ.name = 'rbvimeo'
 PROJ.authors = 'Matt Pruitt'

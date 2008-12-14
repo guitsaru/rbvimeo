@@ -8,13 +8,13 @@ lib/Comment.rb
 lib/Thumbnail.rb
 lib/User.rb
 lib/Video.rb
-spec/rbVimeo_spec.rb
-spec/sample_test_settings.yml
-spec/Video_spec.rb
-spec/XML/339189.comments.xml
-spec/XML/339189.xml
-spec/XML/not_found.xml
-spec/spec_helper.rb
+rbvimeo.rb
+test/test_rbvimeo.rb
+test/test_video.rb
+test/XML/339189.comments.xml
+test/XML/339189.xml
+test/XML/not_found.xml
+test/test_helper.rb
 tasks/ann.rake
 tasks/annotations.rake
 tasks/bones.rake
@@ -24,5 +24,5 @@ tasks/manifest.rake
 tasks/post_load.rake
 tasks/rubyforge.rake
 tasks/setup.rb
-tasks/spec.rake
+tasks/test.rake
 tasks/svn.rake
