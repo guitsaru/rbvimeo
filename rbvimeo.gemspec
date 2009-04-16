@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{rbvimeo}
   s.rubygems_version = %q{1.3.1}
-  s.summary = %q{A ruby wrapper for the vimeo api}
+  s.summary = %q{A ruby wrapper for the vimeo api.}
   s.test_files = [
     "test/rbvimeo_test.rb",
     "test/test_helper.rb",
