@@ -1,0 +1,10 @@
+require 'rubygems'
+require 'digest/md5'
+require 'open-uri'
+require 'hpricot'
+
+require 'rbvimeo/vimeo'
+require 'rbvimeo/video'
+require 'rbvimeo/thumbnail'
+require 'rbvimeo/user'
+require 'rbvimeo/comment'
