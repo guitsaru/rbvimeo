@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "rbvimeo"
-    gem.summary = %Q{A ruby wrapper for the vimeo api}
+    gem.summary = %Q{A ruby wrapper for the vimeo api.}
     gem.email = "guitsaru@gmail.com"
     gem.homepage = "http://github.com/guitsaru/rbvimeo"
     gem.authors = ["Matt Pruitt"]
