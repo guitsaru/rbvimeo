@@ -1,6 +1,6 @@
-require File.expand_path(File.join(File.dirname(__FILE__), 'test_helper'))
+require 'test_helper'
 
-class TestVideo < Test::Unit::TestCase
+class VideoTest < Test::Unit::TestCase
   context "initialization" do
     setup do
       @api_key = '56a9c1c65e700ca10a678a2bcd8e77af'

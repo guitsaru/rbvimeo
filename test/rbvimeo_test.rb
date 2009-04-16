@@ -1,6 +1,6 @@
-require File.expand_path(File.join(File.dirname(__FILE__), 'test_helper'))
+require 'test_helper'
 
-class TestRbVimeo < Test::Unit::TestCase
+class RbvimeoTest < Test::Unit::TestCase
   context "Vimeo" do
     setup do
       @api_key = '56a9c1c65e700ca10a678a2bcd8e77af'

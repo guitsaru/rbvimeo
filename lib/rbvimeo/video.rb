@@ -1,7 +1,3 @@
-require 'rubygems'
-require 'hpricot'
-require 'open-uri'
-
 module RBVIMEO
   class Video
     attr_reader :id, :title, :caption, :upload_date, :number_of_likes, :number_of_plays

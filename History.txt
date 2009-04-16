@@ -1,7 +1,0 @@
-== 0.2.1 / 2008-10-13
-* Lowered flog store
-== 0.2.0 / 2008-08-26
-* Switched to Hpricot for XML parsing.
-* Comments are now lazily loaded and include memoization.
-== 0.1.0 / 2008-04-04
-* Initial Release.
