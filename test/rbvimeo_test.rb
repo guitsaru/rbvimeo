@@ -19,7 +19,7 @@ class RbvimeoTest < Test::Unit::TestCase
     end
     
     should "generate a url" do
-      assert_equal("http://www.vimeo.com/api/rest?api_key=#{@api_key}&method=vimeo.videos.getInfo&video_id=339189&api_sig=09cc6d8b963c73caf647e436b2147810", @vimeo.generate_url(@params, "read"))
+      assert_equal("http://www.vimeo.com/api/rest/v2/?api_key=#{@api_key}&method=vimeo.videos.getInfo&video_id=339189&api_sig=09cc6d8b963c73caf647e436b2147810", @vimeo.generate_url(@params, "read"))
     end
     
     should "generate a video" do

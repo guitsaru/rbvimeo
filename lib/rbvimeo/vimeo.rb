@@ -2,7 +2,7 @@ module RBVIMEO
   class Vimeo
     attr_accessor :api_key, :api_secret
 
-    @@API_REST_URL  = "http://www.vimeo.com/api/rest"
+    @@API_REST_URL   = "http://www.vimeo.com/api/rest/v2/"
     @@API_AUTH_URL   = "http://www.vimeo.com/services/auth/"
     @@API_UPLOAD_URL = "http://www.vimeo.com/services/upload/"
 

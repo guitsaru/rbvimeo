@@ -1,28 +1,78 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rsp stat="ok" generated_in="0.0191">
-    <video id="339189" privacy="anybody" is_uploading="0" is_transcoding="0" is_hd="1" is_favorite="1">
-        <title>Upload Tutorial</title>
-        <caption>This is a tutorial about our new Uploader. Enjoy!</caption>
-        <upload_date>2007-10-12 16:30:32</upload_date>
-        <number_of_likes>174</number_of_likes>
-        <number_of_plays>515407</number_of_plays>
-        <number_of_comments>34</number_of_comments>
-        <width>506</width>
-        <height>380</height>
-        <owner nsid="152184" id="152184" username="staff" fullname="Vimeo Staff"/>
-        <tags>
-            <tag id="918189" author="152184" raw="vimeo">vimeo</tag>
-            <tag id="918190" author="152184" raw="tutorial">tutorial</tag>
-            <tag id="918191" author="152184" raw="upload">upload</tag>
-            <tag id="918192" author="152184" raw="uploader">uploader</tag>
-        </tags>
-        <urls>
-            <url type="videopage">http://www.vimeo.com/339189/l:app-230</url>
-        </urls>
-        <thumbnails>
-            <thumbnail width="96" height="72">http://40.media.vimeo.com/d1/5/36/63/98/thumbnail-36639824.jpg</thumbnail>
-            <thumbnail width="200" height="150">http://40.media.vimeo.com/d1/5/29/49/99/thumbnail-29499974.jpg</thumbnail>
-            <thumbnail width="460" height="345">http://80.media.vimeo.com/d1/5/29/49/01/thumbnail-29490188.jpg</thumbnail>
-        </thumbnails>
-    </video>
+<?xml version="1.0" encoding="utf-8"?>
+<rsp generated_in="0.1775" stat="ok">
+  <video embed_privacy="anywhere" id="339189" is_hd="1" is_transcoding="0" privacy="anybody">
+    <title>Upload Tutorial</title>
+    <caption>This is a tutorial about our new Uploader. Enjoy! 
+Note- If you have problems uploading post a message here, http://www.vimeo.com/forum:known_issues under problems uploading and we'll help you.
+</caption>
+    <description>This is a tutorial about our new Uploader. Enjoy! 
+Note- If you have problems uploading post a message here, http://www.vimeo.com/forum:known_issues under problems uploading and we'll help you.
+</description>
+    <upload_date>2007-10-12 16:30:32</upload_date>
+    <number_of_likes>542</number_of_likes>
+    <number_of_plays>145299</number_of_plays>
+    <number_of_comments>166</number_of_comments>
+    <width>506</width>
+    <height>380</height>
+    <duration>333</duration>
+    <owner display_name="Vimeo Staff" id="152184" is_plus="1" is_staff="1" profileurl="http://vimeo.com/staff" realname="Vimeo Staff" username="staff" videosurl="http://vimeo.com/staff/videos">
+      <portraits>
+        <portrait height="30" width="30">http://30.media.vimeo.com/d1/5/40/55/portrait-4055523.jpg</portrait>
+        <portrait height="75" width="75">http://90.media.vimeo.com/d1/5/40/55/portrait-4055519.jpg</portrait>
+        <portrait height="100" width="100">http://80.media.vimeo.com/d1/5/40/55/portrait-4055518.jpg</portrait>
+        <portrait height="300" width="300">http://40.media.vimeo.com/d1/5/40/55/portrait-4055514.jpg</portrait>
+      </portraits>
+    </owner>
+    <tags>
+      <tag author="152184" id="600358" normalized="vimeo" url="http://vimeo.com/tag:vimeo">vimeo</tag>
+      <tag author="152184" id="600359" normalized="tutorial" url="http://vimeo.com/tag:tutorial">tutorial</tag>
+      <tag author="152184" id="600360" normalized="upload" url="http://vimeo.com/tag:upload">upload</tag>
+      <tag author="152184" id="600361" normalized="uploader" url="http://vimeo.com/tag:uploader">uploader</tag>
+      <tag author="793752" id="3909601" normalized="boatingtips" url="http://vimeo.com/tag:boatingtips">Boating Tips</tag>
+      <tag author="793752" id="3909602" normalized="florida" url="http://vimeo.com/tag:florida">Florida</tag>
+      <tag author="793752" id="3909603" normalized="boatdealer" url="http://vimeo.com/tag:boatdealer">Boat Dealer</tag>
+      <tag author="793752" id="3909604" normalized="yamahamotors" url="http://vimeo.com/tag:yamahamotors">Yamaha Motors</tag>
+      <tag author="793752" id="3909605" normalized="gradywhiteboats" url="http://vimeo.com/tag:gradywhiteboats">Grady White Boats</tag>
+      <tag author="793752" id="3909606" normalized="scoutboats" url="http://vimeo.com/tag:scoutboats">Scout Boats</tag>
+      <tag author="793752" id="3909607" normalized="yamahaservice" url="http://vimeo.com/tag:yamahaservice">Yamaha Service</tag>
+      <tag author="793752" id="3909608" normalized="boatrental" url="http://vimeo.com/tag:boatrental">Boat Rental</tag>
+      <tag author="773100" id="4879093" normalized="ggg" url="http://vimeo.com/tag:ggg">ggg</tag>
+      <tag author="773100" id="4879095" normalized="trv" url="http://vimeo.com/tag:trv">trv</tag>
+      <tag author="773100" id="4879097" normalized="ppwy" url="http://vimeo.com/tag:ppwy">ppwy</tag>
+      <tag author="1256246" id="7321446" normalized="start" url="http://vimeo.com/tag:start">Start</tag>
+      <tag author="1347812" id="8058914" normalized="cortometraje" url="http://vimeo.com/tag:cortometraje">cortometraje</tag>
+      <tag author="1407868" id="8561343" normalized="livemusic" url="http://vimeo.com/tag:livemusic">live music</tag>
+      <tag author="1407868" id="8561346" normalized="tour" url="http://vimeo.com/tag:tour">tour</tag>
+      <tag author="2571689" id="18065912" normalized="video" url="http://vimeo.com/tag:video">video</tag>
+    </tags>
+    <cast>
+      <member display_name="Vimeo Staff" id="152184" role="this is a video about music" username="staff"/>
+      <member display_name="Nick Gray" id="104" role="" username="nickgray"/>
+      <member display_name="adrianmiles" id="109" role="" username="adrianmiles"/>
+      <member display_name="courtwms" id="111" role="" username="courtwms"/>
+      <member display_name="dalas verdugo" id="103" role="" username="dalasv"/>
+      <member display_name="Zach Klein" id="102" role="" username="zach"/>
+      <member display_name="ryanne" id="110" role="" username="ryanne"/>
+      <member display_name="Jake Lodwick" id="101" role="" username="jakob"/>
+      <member display_name="Nick Gray" id="1919203" role="" username="user1919203"/>
+      <member display_name="Nick Gray" id="1061460" role="" username="user1061460"/>
+      <member display_name="Nick Gray" id="572396" role="this is about music" username="user572396"/>
+      <member display_name="nick" id="107879" role="" username="nickanger"/>
+      <member display_name="nick" id="148950" role="" username="user148950"/>
+      <member display_name="Nick" id="194466" role="" username="spiegel"/>
+      <member display_name="Nick" id="211031" role="" username="user211031"/>
+      <member display_name="Antonio Verdugo" id="961704" role="" username="user961704"/>
+      <member display_name="Vartan Simonian" id="1637814" role="" username="user1637814"/>
+    </cast>
+    <urls>
+      <url type="video">http://vimeo.com/339189</url>
+      <url type="mobile">http://vimeo.com/m/#/339189</url>
+    </urls>
+    <thumbnails>
+      <thumbnail height="75" width="100">http://ats.vimeo.com/210/131/21013194_100.jpg</thumbnail>
+      <thumbnail height="150" width="200">http://ats.vimeo.com/210/131/21013194_200.jpg</thumbnail>
+      <thumbnail height="480" width="640">http://ats.vimeo.com/210/131/21013194_640.jpg</thumbnail>
+      <thumbnail height="960" width="1280">http://ats.vimeo.com/210/131/21013194_1280.jpg</thumbnail>
+    </thumbnails>
+  </video>
 </rsp>
