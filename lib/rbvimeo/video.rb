@@ -1,6 +1,6 @@
 module RBVIMEO
   class Video
-    attr_reader :id, :title, :caption, :upload_date, :number_of_likes, :number_of_plays
+    attr_reader :id, :title, :description, :upload_date, :number_of_likes, :number_of_plays
     attr_reader :number_of_comments, :width, :height, :owner, :tags, :url
     attr_reader :thumbs, :duration
 
@@ -86,7 +86,7 @@ EOF
       return nil if xml_doc.at("title").nil?
       @id = id
 
-      %w[title caption upload_date number_of_likes number_of_plays width height number_of_comments url duration].each do |attribute|
+      %w[title description upload_date number_of_likes number_of_plays width height number_of_comments url duration].each do |attribute|
         instance_variable_set("@#{attribute}", xml_doc.at(attribute).inner_html)
       end
 

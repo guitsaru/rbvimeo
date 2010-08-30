@@ -23,8 +23,8 @@ class VideoTest < Test::Unit::TestCase
         assert_equal("Upload Tutorial", @vid.title.chomp)
       end
 
-      should "have a caption" do
-        assert_equal("This is a tutorial about our new Uploader. Enjoy! \nNote- If you have problems uploading post a message here, http://www.vimeo.com/forum:known_issues under problems uploading and we'll help you.", @vid.caption.chomp)
+      should "have a description" do
+        assert_equal("This is a tutorial about our new Uploader. Enjoy! \nNote- If you have problems uploading post a message here, http://www.vimeo.com/forum:known_issues under problems uploading and we'll help you.", @vid.description.chomp)
       end
 
       should "have an upload date" do
