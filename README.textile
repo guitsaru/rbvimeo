@@ -38,7 +38,7 @@ h2. Documentation
 
 h2. Installation
 
-<pre>sudo gem install guitsaru-rbvimeo -s http://gems.github.com</pre>
+<pre>sudo gem install rbvimeo</pre>
 
 h2. Contributing
 
